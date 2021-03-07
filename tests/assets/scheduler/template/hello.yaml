@@ -1,0 +1,12 @@
+kind: cloudwatch
+name: cloudwatch-example
+spec:
+    name: example
+    Schedule: cron(0 4 * * ? *)
+---
+kind: glue
+name: glue-example
+spec:
+    name: example
+    S3TargetPath: s3://kmong-data-lake/97.trash
+    Schedule: cron(0 4 * * ? *)
