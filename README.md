@@ -91,7 +91,7 @@ Parameters
 
     사용할 버킷 이름입니다.
 
-* **[REQUIRED] service_name** (*string*) --
+* **service_name** (*string*) --
 
     서비스 이름은 버킷 내에서 분류 역할을 합니다. 이 상황에서 account과 orders 및 items는 서비스 이름입니다.
 
@@ -380,7 +380,7 @@ working complete!
 **Example**
 
 ```
-handler.list_by('CommonPrefixes', Prefix='foo/bar', Delimiter='/')
+handler.list_by('CommonPrefixes', Prefix='foo/bar/', Delimiter='/')
 ```
 
 **Parameters**
@@ -409,7 +409,7 @@ handler.list_by('CommonPrefixes', Prefix='foo/bar', Delimiter='/')
 **Example**
 
 ```
-handler.list_dirs(Prefix='foo/bar', Delimiter='/')
+handler.list_dirs(Prefix='foo/bar/', Delimiter='/')
 ```
 
 **Parameters**

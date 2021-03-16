@@ -22,7 +22,7 @@ class EasyS3():
 
         사용할 버킷 이름입니다.
 
-    * **[REQUIRED] service_name** (*string*) --
+    * **service_name** (*string*) --
 
         서비스 이름은 버킷 내에서 분류 역할을 합니다. 이 상황에서 account과 orders 및 items는 서비스 이름입니다.
 
@@ -160,7 +160,7 @@ class EasyS3():
         random = options.get("random", False)
         compress_type = options.get("compress_type", None)
         full_path = self._get_full_path(path, ymd)
-        
+
         return self._put_file_with_transform(full_path, value, public, random, compress_type=compress_type)
 
     def load(self, path: str):
@@ -367,7 +367,7 @@ class EasyS3():
         **Example**
 
         ```
-        handler.list_by('CommonPrefixes', Prefix='foo/bar', Delimiter='/')
+        handler.list_by('CommonPrefixes', Prefix='foo/bar/', Delimiter='/')
         ```
         
         **Parameters**
@@ -410,7 +410,7 @@ class EasyS3():
         **Example**
 
         ```
-        handler.list_dirs(Prefix='foo/bar', Delimiter='/')
+        handler.list_dirs(Prefix='foo/bar/', Delimiter='/')
         ```
         
         **Parameters**
@@ -428,7 +428,7 @@ class EasyS3():
         """
         return [p['Prefix'] for p in self.list_by('CommonPrefixes', **base_kwargs)]
             
-    def list_objects(**base_kwargs):
+    def list_objects(self, **base_kwargs):
         """
         이 기능을 사용하여 S3 버킷 안의 디렉토리 오브젝트 리스트를 가져올 수 있습니다.
 
