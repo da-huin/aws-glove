@@ -63,6 +63,10 @@ class EasyS3():
         if not os.path.isdir(self._tmp_path):
             os.makedirs(self._tmp_path, exist_ok=True)
 
+    @property
+    def client(self):
+        return self._s3_client
+
 
     def save(self, path: str, value, options: dict={}):
         """
