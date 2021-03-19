@@ -143,7 +143,7 @@ class AWSAthena():
             header = get_var_char_values(header)
             return [dict(zip(header, get_var_char_values(row))) for row in rows]
 
-
+        query_string = query_string.strip()
         if format_type == "auto":
             format_type = get_format_type(query_string)
 
