@@ -6,7 +6,7 @@ import io
 from setuptools import find_packages, setup
 
 setup(name='aws_glove',
-      version='1.0.12',
+      version='1.0.13',
       description='AWS를 쉽게 사용할 수 있게 도와줍니다.',
       long_description="Please refer to the https://github.com/da-huin/aws_glove",
       long_description_content_type="text/markdown",
