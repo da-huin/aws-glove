@@ -8,7 +8,7 @@ class AWSEC2():
     def __init__(self, region_name):
         self._ec2_client = boto3.client('ec2', region_name=region_name)
 
-    def replace_inbound_sg(self, group_name, services, sources):
+    def replace_inbound_sg(self, group_name, services, sources, connections={}):
         '''
         **Examples**
         ```python
@@ -23,7 +23,11 @@ class AWSEC2():
             'source b': '22.222.22.2'
         }
 
-        AWSEC2().replace_inbound_sg(group_name, services, sources)   
+        connections = {
+            'source a': ['service a'],
+        }
+
+        AWSEC2().replace_inbound_sg(group_name, services, sources, connections=connections)   
         ```     
 
         **Parameters**
@@ -40,11 +44,26 @@ class AWSEC2():
 
             소스 이름과 아이피 딕셔너리입니다.
 
+
+        * **[REQUIRED] sources** (*dict*) --
+        
+            소스와 매칭되는 서비스 딕셔너리입니다.
+
         '''
+        
+        
+        
         inpermissions = []
         for service_name, service_port in services.items():
             inranges = []
             for source_name, source_ip in sources.items():
+                c = connections.get(source_name, [])
+                if len(c):
+                    try:
+                        c.index(service_name)
+                    except:
+                        continue
+                    
                 inranges.append({
                     'CidrIp': f'{source_ip}/32',
                     'Description': f'[{source_name}] {service_name}'
